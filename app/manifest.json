@@ -1,0 +1,25 @@
+{
+  "name": "facePwd",
+  "version": "0.0.15",
+  "manifest_version": 2,
+  "description": "facePwd, 人脸识别输入自动输入密码",
+  "icons": {
+    "16": "images/icon-16.png",
+    "128": "images/icon-128.png"
+  },
+  "default_locale": "en",
+  "background": {
+    "scripts": [
+      "scripts/chromereload.js",
+      "scripts/background.js"
+    ]
+  },
+  "browser_action": {
+    "default_icon": {
+      "19": "images/icon-19.png",
+      "38": "images/icon-38.png"
+    },
+    "default_title": "facepwd",
+    "default_popup": "popup.html"
+  }
+}
