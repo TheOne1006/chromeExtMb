@@ -43,11 +43,15 @@ module.exports = function (grunt) {
         files: ['Gruntfile.js']
       },
       styles: {
-        files: ['<%= config.app %>/styles/{,*/}*.css'],
-        tasks: [],
+        files: ['<%= config.app %>/styles/{,*/}*.scss'],
+        tasks: ['sass'],
         options: {
           livereload: '<%= connect.options.livereload %>'
         }
+      },
+      html: {
+        files:['<%= config.app %>/*.html'],
+        tasks:['bowerInstall']
       },
       livereload: {
         options: {
@@ -59,6 +63,14 @@ module.exports = function (grunt) {
           '<%= config.app %>/manifest.json',
           '<%= config.app %>/_locales/{,*/}*.json'
         ]
+      }
+    },
+    // build css from sass
+    sass: {
+      app: {
+        files: {
+          '<%= config.app %>/styles/main.css': '<%= config.app %>/styles/main.scss'
+        }
       }
     },
 
@@ -298,6 +310,7 @@ module.exports = function (grunt) {
   grunt.registerTask('debug', function () {
     grunt.task.run([
       'jshint',
+      'sass',
       'concurrent:chrome',
       'connect:chrome',
       'watch'
