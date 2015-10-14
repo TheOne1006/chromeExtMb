@@ -49,10 +49,10 @@ module.exports = function (grunt) {
           livereload: '<%= connect.options.livereload %>'
         }
       },
-      html: {
-        files:['<%= config.app %>/*.html'],
-        tasks:['bowerInstall']
-      },
+      // html: {
+      //   files:['<%= config.app %>/*.html'],
+      //   tasks:['bowerInstall']
+      // },
       livereload: {
         options: {
           livereload: '<%= connect.options.livereload %>'

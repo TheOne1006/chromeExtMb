@@ -21,6 +21,7 @@
   "globals" : {
     "chrome": true,
     "crypto": true,
+    "angular":true,
     "describe":true,
     "it":true
   }

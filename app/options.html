@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html data-ng-app='mbOptions'>
   <head>
     <meta charset="utf-8">
     <!-- build:css styles/vendor.css -->
@@ -7,13 +7,93 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css styles/main.css -->
+    <link href="styles/main.css" rel="stylesheet">
+    <link href="styles/google-plus-themes.css" rel="stylesheet">
     <!-- endbuild -->
   </head>
   <body>
-    <h1>标题</h1>
-    <div id="video">
+    <div class='navbar navbar-fixed-left leftnav box-shadow-small'>
         
+        <!-- test -->
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
     </div>
+
+    <div class="navbar navbar-fixed-top header box-shadow-small">
+        <div class="col-md-9 col-md-offset-3 col-xs-8 col-xs-offset-4">
+            <div class="navbar-header">
+              
+              <form class="navbar-form pull-left">
+                  <div class="input-group">
+                    <input type="search" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+                    <div class="input-group-btn">
+                      <button class="btn btn-default btn-primary" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                  </div>
+              </form>
+          
+            </div>
+
+            <div class="navbar-collapse" id="navbar-collapse1">
+              <ul class="nav navbar-nav navbar-right hidden-xs">
+                 <li><a href="#" id="btnToggle"><i class="glyphicon glyphicon-th"></i></a></li>
+                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" ><i class="glyphicon glyphicon-user"></i></a>
+                    <ul class="nav dropdown-menu">
+                        <li><a href="#"><i class="glyphicon glyphicon-user" style="color:#1111dd;"></i> Profile</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-dashboard" style="color:#0000aa;"></i> Dashboard</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-inbox" style="color:#11dd11;"></i> Pages</a></li>
+                        <li class="nav-divider"></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-cog" style="color:#dd1111;"></i> Settings</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-plus"></i> More..</a></li>
+                    </ul>
+                 </li>
+               </ul>
+            </div>  
+        </div> 
+    </div>
+
+    <div class="main-right row">
+        <div class="col-md-3 col-xs-4"></div>
+        <div class="col-md-9 col-xs-8" data-ui-view='main'>
+            <li>2</li>
+            <li>2</li>
+            <li>2</li>
+            <li>2</li>
+            <li>2</li>
+            <li>2</li>
+        </div>
+    </div>
+
+
+
+    <!-- Angular Template Start -->
+    <script type="text/ng-template" id="lovestory.html">
+        <h4>lovestory</h4>
+        <p>这是script标签获取模板文件的方式</p>
+        <a href="http://www.baidu.com">标签启用templateCache方式</a>
+    </script>
+    <!-- Angular Template End   -->
+
+
+
+
+
+
+
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
@@ -25,8 +105,8 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-    <!-- build:js scripts/popup.js -->
-    <script src="scripts/popup.js"></script>
+    <!-- build:js scripts/options.js -->
+    <script src="scripts/options_ng.js"></script>
     <!-- endbuild -->
   </body>
 </html>

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*!
  * Bootstrap v3.3.5 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
@@ -5795,7 +5796,27 @@ button.close {
   .hidden-print {
     display: none !important; } }
 /**
- * 
+ * extend
  */
+.navbar-fixed-left {
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  height: calc(100%);
+  overflow-y: auto;
+  -webkit-transition: left 300ms ease-in-out; }
+
+.leftnav {
+  padding-top: 60px;
+  background: #fff;
+  z-index: 3000;
+  width: 234px; }
+
+.box-shadow-small {
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 2px 4px 8px rgba(0, 0, 0, 0.28); }
+
+.main-right {
+  padding-top: 50px; }
 
 /*# sourceMappingURL=main.css.map */

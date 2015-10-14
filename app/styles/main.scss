@@ -5,5 +5,39 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 
 /**
- * 
+ * extend
  */
+.navbar-fixed-left {
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  height: calc(100%);
+  overflow-y: auto;
+  -webkit-transition: left 300ms ease-in-out;
+
+}
+
+.leftnav {
+  padding-top: 60px;
+  background: #fff;
+  z-index:3000;
+  width: 234px;
+}
+
+
+.box-shadow-small {
+  box-shadow: 0 0 4px rgba(0,0,0,.14),2px 4px 8px rgba(0,0,0,.28);
+}
+
+@media (max-width: $screen-sm-min) {
+  // .leftnav {
+  //   width: 117px;
+  // }
+}
+
+
+// main-right
+.main-right {
+  padding-top: 50px;
+}
