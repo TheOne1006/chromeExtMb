@@ -5796,6 +5796,9 @@ button.close {
   .hidden-print {
     display: none !important; } }
 /**
+ * my variables
+ */
+/**
  * extend
  */
 .navbar-fixed-left {
@@ -5817,6 +5820,205 @@ button.close {
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 2px 4px 8px rgba(0, 0, 0, 0.28); }
 
 .main-right {
-  padding-top: 50px; }
+  padding-top: 80px; }
+
+/*====================================================
+    Grid
+====================================================*/
+.grid {
+  width: 100%;
+  transition: -webkit-transform 250ms cubic-bezier(0.5, -0.75, 0.25, 1.5);
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-transform-origin: bottom;
+  -webkit-backface-visibility: hidden;
+  z-index: 7000;
+  -webkit-will-change: -webkit-transform, -webkit-filter; }
+
+/*====================================================
+    Link Panel Grid Layout
+====================================================*/
+.list-bookmarks {
+  font-size: 0;
+  margin-top: 2.25rem;
+  -webkit-transform: translate3d(0, 0, 0); }
+
+/*hack to keep keyboard navigation from making grid choppy*/
+.list-bookmarks li {
+  -webkit-animation: fade-in-up 300ms ease;
+  background: transparent;
+  display: inline-block;
+  -webkit-transform: translate3d(0, 0, 0);
+  list-style: none;
+  margin: 1rem;
+  vertical-align: top;
+  width: 16.5rem;
+  -webkit-will-change: -webkit-transform, opacity; }
+
+.list-bookmarks li:active {
+  -webkit-transform: scale(0.99); }
+
+/* Grid Panel Animation */
+.list-bookmarks li:nth-child(3n+3),
+.list-bookmarks li:nth-child(5n+1) {
+  -webkit-animation-duration: 500ms; }
+
+/*====================================================
+    Link Panels
+====================================================*/
+.card {
+  border-radius: 3px;
+  box-shadow: 0 2px 4px -2px rgba(36, 45, 50, 0.2);
+  overflow: hidden;
+  position: relative;
+  top: 0;
+  -webkit-transform: translateY(0);
+  -webkit-backface-visibility: hidden !important;
+  transition: box-shadow 300ms cubic-bezier(0.65, -1, 0.25, 2.5), -webkit-transform 300ms cubic-bezier(0.65, -1, 0.25, 2.5);
+  -webkit-will-change: -webkit-transform, box-shadow; }
+
+.card:hover,
+.card-primary {
+  -webkit-transform: translateY(-0.3rem);
+  box-shadow: 0 10px 16px -4px rgba(36, 45, 50, 0.15); }
+
+.card:before {
+  background: #4285f4;
+  bottom: 0;
+  content: " ";
+  display: inline-block;
+  height: 0.25rem;
+  position: absolute;
+  -webkit-transform: scaleY(0);
+  transform-origin: bottom;
+  transition: -webkit-transform 300ms cubic-bezier(0.65, -1, 0.25, 3);
+  width: 16.5rem;
+  z-index: 7020;
+  -webkit-will-change: -webkit-transform; }
+
+.card-primary:before {
+  -webkit-transform: scaleY(1); }
+
+.card:focus {
+  outline: none; }
+
+.edit-toggle {
+  background: white;
+  cursor: pointer;
+  height: 38px;
+  font-size: 20px;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 122px;
+  width: 25px;
+  z-index: 7020;
+  transition: opacity 400ms ease; }
+
+.edit-toggle:hover {
+  opacity: 1; }
+
+/*====================================================
+    Transparent Element to Hold Link
+====================================================*/
+.bookmark-link {
+  bottom: 0;
+  display: block;
+  left: 0;
+  position: absolute;
+  right: 0;
+  text-decoration: none;
+  top: 0;
+  z-index: 7010; }
+
+/*====================================================
+    Link Details
+====================================================*/
+.details {
+  background: white;
+  cursor: pointer;
+  padding: 1rem;
+  text-decoration: none;
+  position: relative;
+  width: 100%; }
+
+.details h2 {
+  color: rgba(36, 45, 50, 0.8);
+  font-size: 14px;
+  font-weight: 700;
+  height: auto;
+  overflow: hidden;
+  padding-bottom: .5rem;
+  width: 100%; }
+
+.favicon {
+  height: 16px;
+  margin-bottom: .5rem;
+  width: 16px; }
+
+/*====================================================
+    Link Tags
+====================================================*/
+.tag-links {
+  margin-top: 1rem;
+  position: relative;
+  z-index: 7020; }
+
+.tag-links a {
+  color: rgba(36, 45, 50, 0.35);
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 0.75rem;
+  padding-bottom: 0.4rem;
+  padding-right: 0.35rem;
+  transition: color 250ms ease; }
+
+.tag-links a:hover {
+  color: #4285f4; }
+
+.tag-links .badge-custom {
+  color: rgba(36, 45, 50, 0.7); }
+
+/*====================================================
+    Thumbnail / Screenshot
+====================================================*/
+.thumbnail-loading,
+.thumbnail {
+  background-position: center top !important;
+  background-repeat: no-repeat !important;
+  margin-bottom: 0px !important;
+  height: 10rem; }
+
+.thumbnail-loading {
+  background-size: 24px 24px !important;
+  background-position: center !important; }
+
+/* Forcing Cover and Hiding Backface Keeps Transitions Smooth */
+.thumbnail {
+  background-size: cover !important; }
+
+.thumbnail:after,
+.thumbnail-loading:after {
+  background: rgba(36, 45, 50, 0.2);
+  display: block;
+  height: 100%;
+  width: 100%;
+  content: ""; }
+
+/*====================================================
+    Styles for Hide Thumbnails Option
+====================================================*/
+.card-small .thumbnail-loading {
+  background-size: 18px 18px !important; }
+
+.card-small .thumbnail-loading,
+.card-small .thumbnail {
+  height: 1.75rem; }
+
+.card-small:after {
+  top: 1.75rem; }
+
+.card-small .edit-toggle {
+  top: 1.75rem; }
 
 /*# sourceMappingURL=main.css.map */

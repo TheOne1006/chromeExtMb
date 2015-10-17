@@ -10,7 +10,7 @@ var ngApp;
 ngApp = angular.module('mbOptions', [
   'ui.router',
   'ui.bootstrap'
-  ]);
+]);
 
 
 /**
@@ -21,13 +21,14 @@ ngApp
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
-        .state('home',{
-          url:'/',
-          views: {
+      .state('home',{
+        url:'/',
+        views: {
             'main':{
-              templateUrl:'views/bookMarksList.html'
+              templateUrl:'views/bookMarksList.html',
+              controller:'listCtrl'
             }
           }
         });
-      }
-  ]);
+  }
+]);

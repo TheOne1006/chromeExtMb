@@ -23,6 +23,8 @@
     "crypto": true,
     "angular":true,
     "describe":true,
+    "ngApp":true,
+    "_":true,
     "it":true
   }
 }
