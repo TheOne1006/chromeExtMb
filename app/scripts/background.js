@@ -1,6 +1,184 @@
 'use strict';
 
 
+/**
+ * 数据存储Server
+ */
+function mbDataServer () {
+  
+  var _cache = {
+    'mbList' : [],
+    'dirList' : []
+  },
+  needCheck = false;
+
+  function _getAll ( next) {
+    chrome.storage.local.get('bmIdArr', function(dataObj) {
+        _cache.mbList = dataObj.bmIdArr || [];
+
+        next(_cache.mbList);
+    });
+  }
+
+  function _getId (id, next) {
+    chrome.storage.local.get(id, function(dataObj) {
+        next(dataObj[id]);
+    });
+  }
+
+
+  return {
+    getAll: function(next){
+      if(needCheck || _cache.mbList.length === 0) {
+        _getAll(next);
+      }else {
+        next(_cache.mbList);
+      }
+    },
+    getId: function(id, next){
+      if(id && _.isString(id)){
+        _getId(id, next);
+      }else {
+        next();
+      }
+    },
+    checkNext: function() {
+        needCheck = true;
+    }
+
+  };
+
+}
+
+
+/**
+ * visitServer
+ */
+function visitServer () {
+  var _cache = {
+    hostNameList: [],
+    hrefList: []
+  };
+
+  var defaluteUrl = {
+    url:'',
+    visitCount:1,
+    liveTime:0
+  };
+
+  /**
+   * 初始化
+   */
+  chrome.storage.local.get('hrefList', function(data){
+    _cache.hrefList = data.hrefList;
+  });
+
+  chrome.storage.local.get('hostNameList', function(data){
+    _cache.hostNameList = data.hostNameList;
+  });
+
+
+  return {
+    addVisit: function(url){
+      chrome.storage.local.get(url,function(data){
+        var tmpObj = {}, urlData = {};
+
+        if(data[url]){
+          urlData = _.extend(defaluteUrl,data[url]);
+          urlData.visitCount += 1;
+        }else {
+          urlData = _.extend({},defaluteUrl,{url:url});
+        }
+
+        tmpObj[url] = urlData;
+
+        chrome.storage.local.set(tmpObj);
+
+      });
+    },
+    push: function(data){
+      if(data && data.href){
+        if(_.indexOf(_cache.hrefList, data.href === -1)){
+          _cache.hrefList.push(data.href);
+
+           chrome.storage.local.set({'hrefList':_cache.hrefList});
+        }
+      }else if(data.hostName){
+        if(_.indexOf(_cache.hrefList, data.hostName === -1)){
+          _cache.hostNameList.push(data.hostName);
+
+          chrome.storage.local.set({'hostNameList':_cache.hostNameList});
+        }
+      }
+    },
+    getFromHostName: function(){
+
+    },
+    getFromHref: function(){
+
+    }
+
+  };
+}
+
+
+var _mbserver = mbDataServer(),
+_listenServer,
+_visitServer = visitServer();
+/**
+ * 处理监听返回事件
+ */
+
+_listenServer = (function(){
+
+  return {
+    getAll:function(data, sendResponse){
+      _mbserver.getAll(function(data){
+          // console.log(data);
+          sendResponse(data);
+      });
+    },
+    statisticalUrl: function(data) {
+      var href = data.href || '',
+        hostName = data.hostName;
+
+      _visitServer.addVisit(href);
+      _visitServer.addVisit(hostName);
+
+      _visitServer.push(data);
+
+    }
+
+  };
+
+})();
+
+/**
+ * 监听
+ * message = {
+ *   "action": action,
+ *   "data": data
+ * }
+ */
+chrome.runtime.onMessage.addListener(function(message, sender, sendResponse){
+  var actionName = (message && message.action) || '',
+  data = message.data;
+
+  if(_listenServer.hasOwnProperty(actionName)) {
+
+    _listenServer[actionName](data, sendResponse);
+  }else {
+    sendResponse();
+  }
+});
+
+
+
+
+
+
+
+
 function bookMarkSchema ( bookObj) {
   var defaultOptions = {
     'id':'0',

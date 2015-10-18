@@ -1,6 +1,6 @@
 {
   "name": "书签扩展",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "manifest_version": 2,
   "description": "书签扩展, 更快捷的书签分类应用",
   "icons": {
@@ -25,6 +25,18 @@
   "omnibox": {
     "keyword": "cbm"
   },
+  "content_scripts": [
+    {
+      "matches": [
+          "http://*/*",
+          "https://*/*"
+        ],
+        "js": [
+          "scripts/contentscript.js"
+        ],
+        "run_at": "document_end"
+    }
+  ],
   "options_page":"options.html",
   "permissions": [ 
     "bookmarks","storage"
